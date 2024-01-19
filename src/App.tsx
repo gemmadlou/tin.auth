@@ -1,17 +1,25 @@
 import './App.css'
 import { SignedOut, SignedIn, SignInButton, SignOutButton } from "@clerk/clerk-react";
 
+const Redirect = () => {
+  // @todo auto redirect
+  // window.location.pathname = "/"
+  return (
+    <>
+      <a href="/"><button>Go to dashboard</button></a>
+    </>
+  )
+}
+
 function App() {
 
   return (
     <>
       <SignedOut>
-        Must sign in. <br />
         <SignInButton />
       </SignedOut>
       <SignedIn>
-        You're signed in. <br/>
-        <SignOutButton />
+        <Redirect /> or <SignOutButton />
       </SignedIn>
     </>
   )
