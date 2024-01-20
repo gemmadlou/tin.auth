@@ -1,5 +1,5 @@
 import './App.css'
-import { SignedOut, SignedIn, SignInButton, SignOutButton } from "@clerk/clerk-react";
+import { SignedOut, SignedIn, SignInButton, SignOutButton, OrganizationSwitcher } from "@clerk/clerk-react";
 
 const Redirect = () => {
   // @todo auto redirect
@@ -19,6 +19,8 @@ function App() {
         <SignInButton />
       </SignedOut>
       <SignedIn>
+        <OrganizationSwitcher />
+        <br />
         <Redirect /> or <SignOutButton />
       </SignedIn>
     </>
