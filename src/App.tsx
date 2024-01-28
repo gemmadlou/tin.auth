@@ -28,10 +28,9 @@ const GoToDashboard = () => {
   )
 }
 
-function App() {
-
+const Session = () => {
   return (
-    <>
+    <div>
       <SignedOut>
         <SignInButton redirectUrl='/session/callback' />
       </SignedOut>
@@ -40,8 +39,27 @@ function App() {
         <br />
         <GoToDashboard /> or <SignOutButton />
       </SignedIn>
+    </div>
+  )
+}
+
+const Iframe = () => {
+  return (
+    <>
+      <SignedIn></SignedIn>
+    </>
+  )
+}
+
+function App() {
+
+  return (
+    <>
+      
       <BrowserRouter>
         <Routes>
+          <Route path="/session" element={<Session />} />
+          <Route path="/session/iframe" element={<Iframe />} />
           <Route path="/session/callback" element={<Callback />} />
         </Routes>
       </BrowserRouter>
