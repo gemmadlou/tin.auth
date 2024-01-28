@@ -1,9 +1,26 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css'
 import { SignedOut, SignedIn, SignInButton, SignOutButton, OrganizationSwitcher } from "@clerk/clerk-react";
 
 const Redirect = () => {
-  // @todo auto redirect
-  // window.location.pathname = "/"
+  window.location.pathname = "/"
+  return (
+    <>
+    </>
+  )
+}
+
+const Callback = () => {
+  return (
+    <>
+      <SignedIn>
+        <Redirect />
+      </SignedIn>
+    </>
+  )
+}
+
+const GoToDashboard = () => {
   return (
     <>
       <a href="/"><button>Go to dashboard</button></a>
@@ -16,13 +33,18 @@ function App() {
   return (
     <>
       <SignedOut>
-        <SignInButton />
+        <SignInButton redirectUrl='/session/callback' />
       </SignedOut>
       <SignedIn>
         <OrganizationSwitcher />
         <br />
-        <Redirect /> or <SignOutButton />
+        <GoToDashboard /> or <SignOutButton />
       </SignedIn>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/session/callback" element={<Callback />} />
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
